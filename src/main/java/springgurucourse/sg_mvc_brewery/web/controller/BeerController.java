@@ -25,7 +25,7 @@ public class BeerController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> saveBeer(BeerDTO beerDTO){ //wildcard for raw type
+    public ResponseEntity<?> saveBeer(@RequestBody BeerDTO beerDTO){ //wildcard for raw type
 
         UUID uuid = beerService.saveBeer(beerDTO);  //different from course, lecture 31
         HttpHeaders headers = new HttpHeaders();
@@ -35,7 +35,7 @@ public class BeerController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<?> updateBeer(UUID id, BeerDTO updateBeerDTO){
+    public ResponseEntity<?> updateBeer(UUID id, @RequestBody BeerDTO updateBeerDTO){
         beerService.updateBeer(id, updateBeerDTO);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 

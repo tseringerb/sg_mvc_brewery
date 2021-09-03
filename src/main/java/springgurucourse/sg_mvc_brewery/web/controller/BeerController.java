@@ -42,9 +42,9 @@ public class BeerController {
 
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/{beerId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteBeer(UUID id){
+    public void deleteBeer(@PathVariable("beerId") UUID id){
         beerService.deleteBeerById(id);
     }
 }

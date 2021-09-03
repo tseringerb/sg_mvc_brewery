@@ -26,8 +26,9 @@ public class BeerController {
 
     @PostMapping("/create")
     public ResponseEntity<?> saveBeer(@RequestBody BeerDTO beerDTO){ //wildcard for raw type
-
+        //@RequestBody mean that passing data has Json or Xml format
         UUID uuid = beerService.saveBeer(beerDTO);  //different from course, lecture 31
+        // need pass UUID as string in Json
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location", "/api/v1/beer/" + uuid);
 

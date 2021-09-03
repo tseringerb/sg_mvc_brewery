@@ -25,9 +25,10 @@ public class BeerController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> saveBeer(BeerDTO beerDTO){ //wildcard for raw type
-
+    public ResponseEntity<?> saveBeer(@RequestBody BeerDTO beerDTO){ //wildcard for raw type
+        //@RequestBody mean that passing data has Json or Xml format
         UUID uuid = beerService.saveBeer(beerDTO);  //different from course, lecture 31
+        // need pass UUID as string in Json
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location", "/api/v1/beer/" + uuid);
 
@@ -35,7 +36,7 @@ public class BeerController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<?> updateBeer(UUID id, BeerDTO updateBeerDTO){
+    public ResponseEntity<?> updateBeer(UUID id, @RequestBody BeerDTO updateBeerDTO){
         beerService.updateBeer(id, updateBeerDTO);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 

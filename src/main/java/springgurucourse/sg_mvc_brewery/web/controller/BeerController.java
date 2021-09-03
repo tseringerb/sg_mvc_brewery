@@ -42,7 +42,7 @@ public class BeerController {
 
     }
 
-    @DeleteMapping
+    @DeleteMapping("/delete")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBeer(UUID id){
         beerService.deleteBeerById(id);

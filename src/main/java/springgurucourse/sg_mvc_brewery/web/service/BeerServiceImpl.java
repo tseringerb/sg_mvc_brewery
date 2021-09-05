@@ -1,10 +1,12 @@
 package springgurucourse.sg_mvc_brewery.web.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import springgurucourse.sg_mvc_brewery.web.model.BeerDTO;
 
 import java.util.UUID;
 
+@Slf4j
 @Service
 public class BeerServiceImpl implements BeerService {
     @Override
@@ -24,5 +26,11 @@ public class BeerServiceImpl implements BeerService {
     @Override
     public void updateBeer(UUID id, BeerDTO updateBeerDTO) {
         //todo - make implementation for update method
+    }
+
+    @Override
+    public void deleteBeerById(UUID id) {
+        log.debug("Deleting beer...");
+        //todo - make implementation for delete by id method
     }
 }

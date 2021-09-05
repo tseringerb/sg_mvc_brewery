@@ -24,7 +24,7 @@ public class BeerController {
         return new ResponseEntity<>(beerService.getBeerById(beerId), HttpStatus.OK);
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<?> saveBeer(@RequestBody BeerDTO beerDTO){ //wildcard for raw type
         //@RequestBody mean that passing data has Json or Xml format
         UUID uuid = beerService.saveBeer(beerDTO);  //different from course, lecture 31
@@ -35,14 +35,14 @@ public class BeerController {
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<?> updateBeer(UUID id, @RequestBody BeerDTO updateBeerDTO){
-        beerService.updateBeer(id, updateBeerDTO);
+    @PutMapping("/{beerId}")
+    public ResponseEntity<?> updateBeer(@PathVariable UUID beerId, @RequestBody BeerDTO updateBeerDTO){
+        beerService.updateBeer(beerId, updateBeerDTO);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }
 
-    @DeleteMapping("/delete/{beerId}")
+    @DeleteMapping("/{beerId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBeer(@PathVariable("beerId") UUID id){
         beerService.deleteBeerById(id);
